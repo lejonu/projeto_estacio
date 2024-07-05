@@ -1,20 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import BottomNavigator from "./components/BottomNavigator";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import Axios from "axios";
+// Axios.defaults.baseURL = "http://127.0.0.1:5000/";
+// Axios.defaults.baseURL = "http://localhost:5000/";
+Axios.defaults.baseURL = "http://192.168.1.10:5000/";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <BottomNavigator />
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
