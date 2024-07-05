@@ -1,0 +1,167 @@
+import React from "react";
+import { Text, View, StyleSheet } from "react-native";
+import { ScrollView } from "react-native-web";
+
+const Lgpd = () => {
+  return (
+    <View style={styles.container}>
+      <ScrollView>
+        <Text style={styles.title}>
+          Termos de Uso & Política de Privacidade
+        </Text>
+        <Text style={styles.title}>
+          Termos e Condições de Uso
+        </Text>
+        <Text style={styles.text}>
+          Os presentes termos e condições de uso visam
+          regular a utilização por você, usuário, de nossos
+          serviços pelo aplicativo ‘Registro de Frequência’
+          da auto escola ‘Passagem Obrigatória’. Para a
+          utilização de alguns serviços e canais de
+          atendimento poderá ser feita mediante o registro
+          do usuário; Não nos responsabilizamos por danos a
+          terceiros que decorram de falhas de acesso,
+          transmissão, difusão ou disponibilização de
+          conteúdo e de serviços do aplicativo; A oferta de
+          serviços e/ou conteúdo desse aplicativo obedecem a
+          critérios de acessibilidade;
+        </Text>
+        <Text style={styles.title}>Termo de Aceitação</Text>
+        <Text style={styles.text}>
+          Ao utilizar os nossos Serviços, o usuário aceita e
+          concorda com todos os termos e condições expostas
+          que se encontram vigentes na data. Alertamos que
+          estes Termos e Condições de Uso poderão ser
+          modificados a qualquer momento, em virtude de
+          alterações na legislação ou nos Serviços, em
+          decorrência da utilização de novas ferramentas
+          tecnológicas ou, ainda, sempre que, a exclusivo
+          critério dA auto escola, tais alterações se façam
+          necessárias. A utilização dos Serviços online
+          disponibilizados pelo aplicativo por qualquer
+          usuário implicará em expressa aceitação destes
+          Termos e Condições de Uso.
+        </Text>
+        <Text style={styles.title}>
+          Tratamento de Informações
+        </Text>
+        <Text style={styles.text}>
+          A sua privacidade e o sigilo de suas informações
+          são muito importantes. Tomamos os cuidados
+          necessários para garantir a proteção de seus dados
+          pessoais, o sigilo e o uso adequado dos seus dados
+          pessoais. A auto escola se compromete a cumprir as
+          normas previstas na LGPD e a realizar o tratamento
+          de dados pessoais em conformidade com os seguintes
+          princípios: a) apenas para as finalidades
+          determinadas nessa política, valendo-se da
+          quantidade adequada de dados, pertinentes e
+          limitados à necessidade e objetivo do tratamento;
+          b) de forma transparente, sendo garantido ao
+          titular dos dados o livre acesso, a exatidão dos
+          dados e a sua consulta facilitada; c) de forma
+          segura, por meio da adoção de medidas técnicas
+          aptas a proteger os dados pessoais, prevenir e
+          mitigar danos decorrentes de eventual acesso não
+          autorizado, ou de situação acidental ou ilícita de
+          violação de dados. A auto escola realizará a
+          gestão de dados pessoais durante o ciclo de vida
+          destas informações; e em hipótese alguma haverá
+          tratamento de dados para fins discriminatórios
+          ilícitos ou abusivos.
+        </Text>
+        <Text style={styles.title}>
+          Acesso a Conteúdo Restrito e Suspensão de Acesso
+        </Text>
+        <Text style={styles.text}>
+          Alguns Serviços estão disponíveis em conteúdo
+          aberto e fechado. A utilização dos Sites podem
+          estar condicionadas à utilização através de acesso
+          por login e senha. Quando o acesso a conteúdo for
+          restrito, será necessário prévio cadastro do
+          usuário e o acesso ao ambiente por meio de login e
+          senha. Considerando que você é responsável pela
+          veracidade das informações cadastradas, informamos
+          que o cadastro de informações falsas pode gerar
+          inconsistência na prestação dos serviços, bem como
+          impactar ou interromper o seu acesso. A qualquer
+          tempo, sem aviso prévio, A auto escola poderá
+          suspender, cancelar ou interromper o acesso aos
+          Serviços, respeitadas as condições da legislação
+          aplicável. O SAAE não se responsabiliza por
+          eventuais danos e/ou problemas decorrentes da
+          demora, interrupção ou bloqueio nas transmissões
+          de dados decorrentes da conexão de internet do
+          usuário.
+        </Text>
+        <Text style={styles.title}>
+          Relacionamento com Terceiros
+        </Text>
+        <Text style={styles.text}>
+          Esse aplicativo contém links que levam a sites de
+          terceiros, cujos conteúdos não são de nossa
+          responsabilidade e sobre os quais não incide essa
+          política de privacidade.
+        </Text>
+        <Text style={styles.title}>
+          Conteúdos publicados na forma de notícia
+        </Text>
+        <Text style={styles.text}>
+          Os conteúdos publicados na área de notícias do
+          aplicativo, nos formatos de textos, fotos, vídeos
+          ou áudios, têm caráter institucional ou avisos aos
+          usuários; Disponibiliza esses conteúdos como de
+          uso público, permitindo sua reprodução em parte ou
+          na íntegra, porém é vedada a reprodução dos mesmos
+          de forma alterada, que prejudiquem ou mudem a sua
+          interpretação com objetivos inversos à informação
+          original. Fica vedada, também, a reprodução dos
+          mesmos para fins comerciais.
+        </Text>
+        <Text style={styles.title}>
+          O que é a Lei Geral de Proteção de Dados?
+        </Text>
+        <Text style={styles.text}>
+          É uma lei que estabelece regras ao uso de dados
+          pessoais de pessoas físicas por entidades públicas
+          e privadas. A LGPD é uma norma que garante
+          direitos aos titulares dos dados e estabelece uma
+          regra mínima para coleta, armazenamento,
+          tratamento e compartilhamento de dados pessoais de
+          pessoas físicas. As regras estabelecidas pela LGPD
+          devem ser observadas por todos os setores do
+          mercado: bancos, hospitais, comércios, empresas de
+          e-commerce e também o setor público.
+        </Text>
+        <Text style={styles.title}>
+          Data de publicação deste documento: 05/07/2024
+          11:43
+        </Text>
+      </ScrollView>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: "5%",
+    padding: 20
+  },
+  title: {
+    marginBottom: "5%",
+    marginTop: "5%",
+    fontSize: 16,
+    fontWeight: 3,
+    alignSelf: "center"
+  },
+  text: {
+    marginBottom: "5%",
+    fontSize: 12
+  }
+});
+
+export default Lgpd;
