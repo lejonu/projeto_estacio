@@ -35,3 +35,4 @@ frontend/.env*.local
 # typescript
 frontend/*.tsbuildinfo
 
+ backend/class_implementation/__pycache__/

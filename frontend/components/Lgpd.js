@@ -1,13 +1,13 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
-import { ScrollView } from "react-native-web";
+import { ScrollView } from "react-native";
 
 const Lgpd = () => {
   return (
     <View style={styles.container}>
       <ScrollView>
         <Text style={styles.title}>
-          Termos de Uso & Política de Privacidade
+          Termos de Uso e Política de Privacidade
         </Text>
         <Text style={styles.title}>
           Termos e Condições de Uso
@@ -155,7 +155,6 @@ const styles = StyleSheet.create({
     marginBottom: "5%",
     marginTop: "5%",
     fontSize: 16,
-    fontWeight: 3,
     alignSelf: "center"
   },
   text: {
