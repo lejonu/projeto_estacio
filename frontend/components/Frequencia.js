@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from "react";
-import {
-  TextInput,
-  Button,
-  TouchableRipple
-} from "react-native-paper";
+import React, { useState } from "react";
+import { TextInput, Button } from "react-native-paper";
 import { Text, View, StyleSheet } from "react-native";
 import Axios, { formToJSON } from "axios";
 
 const Frequencia = () => {
-  const [cpf, setCpf] = React.useState("");
+  const [cpf, setCpf] = useState("");
 
   async function sendFrequencia() {
     try {

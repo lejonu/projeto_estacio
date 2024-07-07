@@ -40,6 +40,38 @@ def registrarFrequencia():
 
   except Exception as e:
     return e
+  
+@app.route("/novoAluno", methods=['GET', 'POST'])
+@cross_origin()
+def insertAluno():
+  # ts_temp = datetime(2024, 7, 25, 8)
+  # ts = ts_temp.strftime('%Y-%m-%d %H:%M:%S')
+  ts = datetime.now()
+  try:
+    cpf = request.json['cpf']
+    nome = request.json['nome']
+    idade = request.json['idade']
+    sexo = request.json['sexo']
+    celular = request.json['celular']
+    curso = request.json['curso']
+    turno = request.json['turno']
+
+    insert_aluno = f"""INSERT INTO `projeto_estacio`.`aluno` (`cpf`, `nome`, `idade`, `sexo`, `celular`, `curso`, `turno`) 
+    VALUES ('{cpf}', '{nome}', '{idade}', '{sexo}', '{celular}', '{curso}', '{turno}');"""
+    # insert_aluno = f"""INSERT INTO `aluno` (`cpf`) VALUES ({cpf});"""
+    
+
+    db.execute_query("insert_aluno", query=insert_aluno)
+
+    response = app.response_class(
+        response=json.dumps({'Message': 'CPF inserido com sucesso'}),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+  except Exception as e:
+    return e
 
 @app.route("/alunos")
 @cross_origin()
