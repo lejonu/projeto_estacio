@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 import os
 from flask_cors import CORS, cross_origin
 from datetime import datetime
-from flask import request
+from flask import request, render_template
 
 load_dotenv()
 
@@ -122,7 +122,22 @@ def graph01():
   graphJSON = plotly.io.to_json(fig_barra, pretty=True)
   return graphJSON
 
-# @app.route("/")
-# @cross_origin()
-# def index():
-#   return "api"
+@app.route("/")
+@cross_origin()
+def index():
+  # Graph One
+  df = px.data.medals_wide()
+  fig1 = px.bar(df, x="nation", y=['gold', 'silver', 'bronze'], title = "Wide=Form input")
+  graph1JSON = json.dumps(fig1, cls=plotly.utils.PlotlyJSONEncoder)
+  
+  # Graph Two
+  df = px.data.iris()
+  fig2 = px.scatter_3d(df, x="sepal_length", y="sepal_width", z="petal_width", color="species", title="Iris Dataset")
+  graph2JSON = json.dumps(fig2, cls=plotly.utils.PlotlyJSONEncoder)
+
+  # Graph three
+  df = px.data.gapminder().query("continent=='Oceania'")
+  fig3 = px.line(df, x='year', y='lifeExp', color='country', title='Life Expectancy')
+  graph3JSON = json.dumps(fig3, cls=plotly.utils.PlotlyJSONEncoder)
+    
+  return render_template("index.html", tittle="Home", graph1JSON=graph1JSON, graph2JSON=graph2JSON, graph3JSON=graph3JSON)

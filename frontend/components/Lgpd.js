@@ -132,6 +132,8 @@ const Lgpd = () => {
           devem ser observadas por todos os setores do
           mercado: bancos, hospitais, comércios, empresas de
           e-commerce e também o setor público.
+          
+          http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/L13709compilado.htm
         </Text>
         <Text style={styles.title}>
           Data de publicação deste documento: 05/07/2024
