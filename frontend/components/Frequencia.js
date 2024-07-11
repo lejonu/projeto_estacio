@@ -10,7 +10,7 @@ const Frequencia = () => {
     try {
       if (cpf !== "") {
         const response = await Axios.post(
-          "frequencia",
+          "registrarFrequencia",
           {
             cpf: cpf
           },

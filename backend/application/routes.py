@@ -20,7 +20,6 @@ select_db = """
 db.execute_query("select_db", query=select_db)
 
 # Routes para o aplicativo
-
 @app.route("/novoAluno", methods=['GET', 'POST'])
 @cross_origin()
 def novoAluno():
@@ -95,9 +94,31 @@ def getAlunos():
   )
   return response
 
+# Gráfico para o aplicativo
+@app.route("/graph01App")
+@cross_origin()
+def graph01App():
+  fetch_data = """
+  SELECT cpf, horario FROM frequencia;
+  """
+  alunos_por_dia = db.fetch_data(query=fetch_data)
 
+  df = pd.DataFrame(alunos_por_dia, columns=["cpf", "horario"])
+  df['horario'] = df['horario'].astype(str).str[:10]
+  por_dia = df.groupby(df['horario'])['cpf'].count().reset_index()
 
-# Gráficos
+  fig_barra = px.bar(por_dia, x='horario', y='cpf', 
+                        title='Quantidade de Alunos por Dia.',
+                        labels={'horario': 'Dia','cpf': 'Alunos' },
+                        # color='cpf', 
+                        # color_discrete_sequence=px.colors.qualitative.Pastel
+                        )
+  # fig_barra.show()
+
+  graphJSON = plotly.io.to_json(fig_barra, pretty=True)
+  return graphJSON
+
+# Gráficos para web
 @app.route("/")
 @cross_origin()
 def index():

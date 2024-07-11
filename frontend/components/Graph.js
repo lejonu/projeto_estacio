@@ -16,7 +16,7 @@ const Graph = () => {
 
     async function fetchGraph() {
       try {
-        const response = await Axios.get("graph01", {
+        const response = await Axios.get("graph01App", {
           cancelToken: ourRequest.token
         });
 
