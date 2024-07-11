@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 
 # ts = datetime.now()
-ts_temp = datetime(2024, 7, 1, 8)
+ts_temp = datetime(2024, 7, 12, 8)
 ts = ts_temp.strftime('%Y-%m-%d %H:%M:%S')
 
 load_dotenv()
@@ -18,6 +18,12 @@ db.execute_query("select_db", query=select_db)
 insert_frequencia = f"""
 INSERT INTO `frequencia` (`cpf`, `horario`) 
 VALUES
+('17618269645', '{ts}'),
+('45769993626', '{ts}'),
+('65581013608', '{ts}'),
+('14558937652', '{ts}'),
+('57772594640', '{ts}'),
+('51574823612', '{ts}'),
 ('69991580611', '{ts}'),
 ('56808488649', '{ts}'),
 ('51701506602', '{ts}'),

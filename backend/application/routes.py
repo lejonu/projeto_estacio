@@ -19,34 +19,11 @@ select_db = """
 """
 db.execute_query("select_db", query=select_db)
 
-@app.route("/frequencia", methods=['GET', 'POST'])
-@cross_origin()
-def registrarFrequencia():
-  # ts_temp = datetime(2024, 7, 25, 8)
-  # ts = ts_temp.strftime('%Y-%m-%d %H:%M:%S')
-  ts = datetime.now()
-  try:
-    cpf = request.json['cpf']
-    insert_frequencia = f"""INSERT INTO `frequencia` (`cpf`, `horario`) VALUES ({cpf}, '{ts}');"""
+# Routes para o aplicativo
 
-    db.execute_query("insert_frequencia", query=insert_frequencia)
-
-    response = app.response_class(
-        response=json.dumps({'Message': 'CPF inserido com sucesso'}),
-        status=200,
-        mimetype='application/json'
-    )
-    return response
-
-  except Exception as e:
-    return e
-  
 @app.route("/novoAluno", methods=['GET', 'POST'])
 @cross_origin()
-def insertAluno():
-  # ts_temp = datetime(2024, 7, 25, 8)
-  # ts = ts_temp.strftime('%Y-%m-%d %H:%M:%S')
-  ts = datetime.now()
+def novoAluno():
   try:
     cpf = request.json['cpf']
     nome = request.json['nome']
@@ -58,8 +35,6 @@ def insertAluno():
 
     insert_aluno = f"""INSERT INTO `projeto_estacio`.`aluno` (`cpf`, `nome`, `idade`, `sexo`, `celular`, `curso`, `turno`) 
     VALUES ('{cpf}', '{nome}', '{idade}', '{sexo}', '{celular}', '{curso}', '{turno}');"""
-    # insert_aluno = f"""INSERT INTO `aluno` (`cpf`) VALUES ({cpf});"""
-    
 
     db.execute_query("insert_aluno", query=insert_aluno)
 
@@ -73,6 +48,29 @@ def insertAluno():
   except Exception as e:
     return e
 
+@app.route("/registrarFrequencia", methods=['GET', 'POST'])
+@cross_origin()
+def registrarFrequencia():
+  # ts_temp = datetime(2024, 7, 25, 8)
+  # ts = ts_temp.strftime('%Y-%m-%d %H:%M:%S')
+  ts = datetime.now()
+  try:
+    cpf = request.json['cpf']
+    insert_frequencia = f"""INSERT INTO `frequencia` (`cpf`, `horario`) VALUES ('{cpf}', '{ts}');"""
+
+    db.execute_query("insert_frequencia", query=insert_frequencia)
+
+    response = app.response_class(
+        response=json.dumps({'Message': 'CPF inserido com sucesso'}),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+  except Exception as e:
+    return e
+  
+
 @app.route("/alunos")
 @cross_origin()
 def getAlunos():
@@ -81,7 +79,6 @@ def getAlunos():
   SELECT nome, cpf FROM aluno;
   """
   nome_cpf = db.fetch_data(query=nome_cpf_query)
-
   payload = []
   content = {}
 
@@ -99,45 +96,79 @@ def getAlunos():
   return response
 
 
-@app.route("/graph01")
-@cross_origin()
 
-def graph01():
-  fetch_data = """
-  SELECT cpf, horario FROM frequencia;
-  """
-  alunos_por_dia = db.fetch_data(query=fetch_data)
-  df = pd.DataFrame(alunos_por_dia, columns=["cpf", "horario"])
-  df['horario'] = df['horario'].astype(str).str[:10]
-  por_dia = df.groupby(df['horario'])['cpf'].count().reset_index()
-
-  fig_barra = px.bar(por_dia, x='horario', y='cpf', 
-                       title='Quantidade de Alunos por Dia.',
-                       labels={'horario': 'Dia','cpf': 'Alunos' },
-                       color='horario', 
-                       color_discrete_sequence=px.colors.qualitative.Pastel)
-
-  fig_barra.show()
-
-  graphJSON = plotly.io.to_json(fig_barra, pretty=True)
-  return graphJSON
-
+# Gráficos
 @app.route("/")
 @cross_origin()
 def index():
-  # Graph One
-  df = px.data.medals_wide()
-  fig1 = px.bar(df, x="nation", y=['gold', 'silver', 'bronze'], title = "Wide=Form input")
-  graph1JSON = json.dumps(fig1, cls=plotly.utils.PlotlyJSONEncoder)
-  
-  # Graph Two
-  df = px.data.iris()
-  fig2 = px.scatter_3d(df, x="sepal_length", y="sepal_width", z="petal_width", color="species", title="Iris Dataset")
-  graph2JSON = json.dumps(fig2, cls=plotly.utils.PlotlyJSONEncoder)
+  fetch_alunos="""
+  SELECT * FROM aluno;
+  """
+  alunos = db.fetch_data(query=fetch_alunos)
 
-  # Graph three
-  df = px.data.gapminder().query("continent=='Oceania'")
-  fig3 = px.line(df, x='year', y='lifeExp', color='country', title='Life Expectancy')
-  graph3JSON = json.dumps(fig3, cls=plotly.utils.PlotlyJSONEncoder)
-    
-  return render_template("index.html", tittle="Home", graph1JSON=graph1JSON, graph2JSON=graph2JSON, graph3JSON=graph3JSON)
+  df_alunos = pd.DataFrame(alunos, columns=["cpf", "nome", "idade", "sexo", "celular", "curso", "turno"])
+  # print(df_alunos.head())
+  registros_por_curso = df_alunos['curso'].value_counts()
+  # print(registros_por_curso.head())
+  alunosPorCursoPie = px.pie(df_alunos, names=registros_por_curso.index, values=registros_por_curso.values, 
+                        title='Porcentagem de Alunos por Curso.',
+                        # labels={'dia': 'Dia','cpf': 'Alunos' },
+                        # color='cpf',
+                        color_discrete_sequence=px.colors.qualitative.Pastel              
+                        )
+  alunosPorCursoPieJSON = json.dumps(alunosPorCursoPie, cls=plotly.utils.PlotlyJSONEncoder)
+
+  df_alunos_por_curso = df_alunos.groupby(['curso', 'sexo'])['cpf'].count().reset_index()
+
+  alunosPorCursoBar = px.bar(df_alunos_por_curso, x='cpf', y='curso',
+                        title='Número de Alunos por Curso e Sexo.',
+                        labels={'cpf': 'Alunos','curso': 'Curso', 'sexo': 'Sexo:' },
+                        color='sexo',
+                        color_discrete_sequence=px.colors.qualitative.Pastel              
+                        )
+  alunosPorCursoBarJSON = json.dumps(alunosPorCursoBar, cls=plotly.utils.PlotlyJSONEncoder)
+
+
+  # df_alunos_por_curso = df_alunos.groupby('curso')['cpf'].count()
+  # print(df_alunos_por_curso.head())
+
+  return render_template("index.html", 
+                         tittle="Alunos", 
+                         alunosPorCursoPieJSON=alunosPorCursoPieJSON, 
+                         alunosPorCursoBarJSON=alunosPorCursoBarJSON
+                         )
+
+@app.route("/frequencia_alunos")
+@cross_origin()
+def frequencia_alunos():
+  # Gráfico quantidade de alunos por dia
+  fetch_frequencia_alunos="""
+  SELECT a.cpf, a.nome, a.idade, a.sexo, a.celular, a.curso, a.turno, f.horario FROM aluno AS a INNER JOIN frequencia AS f ON a.cpf = f.cpf;
+  """
+  frequencia_alunos = db.fetch_data(query=fetch_frequencia_alunos)
+  # for i in frequencia_alunos:
+  #   print(i)
+  #   exit()
+  df_freq = pd.DataFrame(frequencia_alunos, columns=["cpf", "nome", "idade", "sexo", "celular", "curso", "turno", "dia"])
+  df_freq['dia'] = df_freq['dia'].astype(str).str[:10]
+  df_freq['cpf'] = df_freq['cpf'].astype(str)
+  # print(df_freq)
+  frequenciaAlunos = df_freq.groupby(['dia'])['cpf'].count().reset_index()
+
+  alunosPorDia = px.bar(frequenciaAlunos, x='dia', y='cpf', 
+                        title='Quantidade de Alunos por Dia.',
+                        labels={'dia': 'Dia','cpf': 'Alunos' },
+                        color='cpf',
+                        color_discrete_sequence=px.colors.qualitative.Pastel
+                        
+                        )
+  alunosPorDiaJSON = json.dumps(alunosPorDia, cls=plotly.utils.PlotlyJSONEncoder)
+
+  return render_template("frequencia_alunos.html", 
+                         tittle="Frequência", 
+                         alunosPorDiaJSON=alunosPorDiaJSON
+                         )
+
+# @app.route("/alunos_cadastrados")
+# @cross_origin()
+# def alunos_cadastrados():

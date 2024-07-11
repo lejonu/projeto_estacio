@@ -12,8 +12,20 @@ select_db = """
 db.execute_query("select_db", query=select_db)
 
 insert_aluno = """
-INSERT INTO `projeto_estacio`.`aluno` (`cpf`, `nome`, `idade`, `sexo`, `celular`, `curso`, `turno`) 
+INSERT INTO `aluno` (`cpf`, `nome`, `idade`, `sexo`, `celular`, `curso`, `turno`) 
 VALUES 
+('34659928659', 'Andrea Maria Isis da Costa', '23', 'Feminino', '31986210289', 'EQUIPAMENTOS OBRIGATÓRIOS', 'MANHA'),
+('72893102689', 'Vinicius Heitor Renato Ramos', '32', 'Masculino', '31995226216', 'DICAS E MACETES', 'TARDE'),
+('78375552607', 'Gabriela Liz Fogaça', '19', 'Feminino', '31991759068', 'LEGISLAÇÃO DE TRÂNSITO', 'NOITE'),
+('89998625696', 'Lívia Rafaela Fernandes', '20', 'Masculino', '31984687931', 'MECÂNICA BÁSICA', 'NOITE'),
+('47741855662', 'Enrico Bernardo', '41', 'Masculino', '31984687931', 'EQUIPAMENTOS OBRIGATÓRIOS', 'TARDE'),
+('31178965627', 'Yasmin Isabella Tereza Pinto', '45', 'Feminino', '31989008255', 'MEIO AMBIENTE', 'MANHA'),
+('51574823612', 'Jorge Alexandre Emanuel Rodrigues', '27', 'Masculino', '31997656803', 'DIREÇÃO DEFENSIVA', 'TARDE'),
+('57772594640', 'Iago Gael Vitor Viana', '29', 'Masculino', '31984687931', 'MEIO AMBIENTE', 'NOITE'),
+('14558937652', 'Sônia Alice Gabrielly Campos', '25', 'Feminino', '31992760197', 'EQUIPAMENTOS OBRIGATÓRIOS', 'TARDE'),
+('65581013608', 'Liz Allana Souza', '18', 'Masculino', '31995247146', 'MEIO AMBIENTE', 'MANHA'),
+('45769993626', 'Mariah Malu Sandra Duarte', '22', 'Feminino', '31994892650', 'EQUIPAMENTOS OBRIGATÓRIOS', 'TARDE'),
+('17618269645', 'Camila Nicole Clara Aparício', '26', 'Feminino', '31984687931', 'DIREÇÃO DEFENSIVA', 'TARDE'),
 ('69991580611', 'Cauã Kauê Santos', '70', 'Masculino', '31984687931', 'DIREÇÃO DEFENSIVA', 'TARDE'),
 ('56808488649', 'Antonella Elisa Andrea', '72', 'Feminino', '31997606928', 'EQUIPAMENTOS OBRIGATÓRIOS', 'MANHA'),
 ('22210627605', 'Catarina Sophie Gabrielly', '34', 'Feminino', '31985336339', 'DICAS E MACETES', 'NOITE'),

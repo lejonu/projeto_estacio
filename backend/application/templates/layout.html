@@ -16,8 +16,8 @@
       rel="stylesheet"
       href="https://unpkg.com/aos@next/dist/aos.css"
     />
-    <link rel="stylesheet" href="{{url_for("static",
-    filename = "main.css")}}" type"text/css"> {% if title %}
+    <!-- <link rel="stylesheet" href="{{url_for("static", filename = "main.css")}}" type"text/css">  -->
+    {% if title %}
     <title>Passagem Obrigatória - {{title}}</title>
     {% else %}
     <title>Passagem Obrigatória</title>
@@ -48,24 +48,25 @@
         >
           <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link text-white" href="#"
-                >Home</a
+              <a
+                class="nav-link text-white"
+                href="{{url_for('index')}}"
+                >Gráficos de Alunos</a
               >
             </li>
 
+            <li class="nav-item">
+              <a
+                class="nav-link text-white"
+                href="{{url_for('frequencia_alunos')}}"
+                >Gráficos de Frequência</a
+              >
+            </li>
             <li class="nav-item">
               <a
                 class="nav-link text-white"
                 href="{{url_for('static', filename = 'termos_de_uso.html')}}"
                 >Termos de uso</a
-              >
-            </li>
-
-            <li class="nav-item">
-              <a
-                class="nav-link text-white"
-                href="{{url_for('static', filename = 'lgpd.html')}}"
-                >LGPD</a
               >
             </li>
           </ul>

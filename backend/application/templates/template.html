@@ -1,0 +1,38 @@
+{% extends "layout.html" %} {% block content %}
+<div class="site-header-logo">
+  <h1 class="text-center">
+    Projeto de Extensão Universidade Estácio de Sá
+  </h1>
+</div>
+
+<div class="row p-4">
+  <div
+    class="card ml-auto mr-auto mb-4"
+    style="width: 90%"
+    data-aos="fade-left"
+  >
+    <div class="card-body">
+      <div id="chart1"></div>
+      <p>
+        Mussum Ipsum, cacilds vidis litro abertis. A ordem
+        dos tratores não altera o pão duris. Não sou faixa
+        preta cumpadi, sou preto inteiris, inteiris. Hoje é
+        sexta-feris, dia da maldadis! Interagi no mé, cursus
+        quis, vehicula ac nisi.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- plotly CDN -->
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<script type="text/javascript">
+  const graphs1 = {{ graph1JSON | safe}};
+  Plotly.plot("chart1", graphs1,{});
+
+  const graphs3 = {{ graph3JSON | safe}};
+  Plotly.plot("chart3", graphs3,{});
+</script>
+{% endblock %}
