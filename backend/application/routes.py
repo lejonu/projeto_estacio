@@ -108,7 +108,7 @@ def graph01App():
   por_dia = df.groupby(df['horario'])['cpf'].count().reset_index()
 
   fig_barra = px.bar(por_dia, x='horario', y='cpf', 
-                        title='Quantidade de Alunos por Dia.',
+                        title='Quantidade de Alunos por Dia',
                         labels={'horario': 'Dia','cpf': 'Alunos' },
                         # color='cpf', 
                         # color_discrete_sequence=px.colors.qualitative.Pastel
@@ -132,7 +132,7 @@ def index():
   registros_por_curso = df_alunos['curso'].value_counts()
   # print(registros_por_curso.head())
   alunosPorCursoPie = px.pie(df_alunos, names=registros_por_curso.index, values=registros_por_curso.values, 
-                        title='Porcentagem de Alunos por Curso.',
+                        title='Porcentagem de Alunos por Curso',
                         # labels={'dia': 'Dia','cpf': 'Alunos' },
                         # color='cpf',
                         color_discrete_sequence=px.colors.qualitative.Pastel              
@@ -142,21 +142,52 @@ def index():
   df_alunos_por_curso = df_alunos.groupby(['curso', 'sexo'])['cpf'].count().reset_index()
 
   alunosPorCursoBar = px.bar(df_alunos_por_curso, x='cpf', y='curso',
-                        title='Número de Alunos por Curso e Sexo.',
+                        title='Número de Alunos por Curso e Sexo',
                         labels={'cpf': 'Alunos','curso': 'Curso', 'sexo': 'Sexo:' },
                         color='sexo',
                         color_discrete_sequence=px.colors.qualitative.Pastel              
                         )
   alunosPorCursoBarJSON = json.dumps(alunosPorCursoBar, cls=plotly.utils.PlotlyJSONEncoder)
 
+  registros_por_turno = df_alunos['turno'].value_counts()
+  # print(registros_por_curso.head())
+  alunosPorTurnoPie = px.pie(df_alunos, names=registros_por_turno.index, values=registros_por_turno.values, 
+                        title='Porcentagem de Alunos por Turno',
+                        # labels={'dia': 'Dia','cpf': 'Alunos' },
+                        # color='cpf',
+                        color_discrete_sequence=px.colors.qualitative.Vivid              
+                        )
+  alunosPorTurnoPieJSON = json.dumps(alunosPorTurnoPie, cls=plotly.utils.PlotlyJSONEncoder)
 
-  # df_alunos_por_curso = df_alunos.groupby('curso')['cpf'].count()
-  # print(df_alunos_por_curso.head())
+  df_alunos_por_turno = df_alunos.groupby(['turno', 'sexo'])['cpf'].count().reset_index()
 
+  alunosPorTurnoBar = px.bar(df_alunos_por_turno, x='cpf', y='turno',
+                        title='Número de Alunos por Turno e Sexo',
+                        labels={'cpf': 'Alunos','turno': 'Turno', 'sexo': 'Sexo:' },
+                        color='sexo',
+                        color_discrete_sequence=px.colors.qualitative.Vivid              
+                        )
+  alunosPorTurnoBarJSON = json.dumps(alunosPorTurnoBar, cls=plotly.utils.PlotlyJSONEncoder)
+  
+  df_alunos['idade'] = df_alunos['idade'].astype(int)                           
+  mediaIdadePorCurso = df_alunos.groupby('curso').agg('idade').mean().reset_index()
+  mediaIdadePorCursoBar = px.bar(mediaIdadePorCurso, 
+                                 x='curso', 
+                                 y='idade',
+                                 title='Média de idade por curso',
+                                 labels={'curso': 'Curso','idade': 'Média de Idade' },
+                                 color='idade',
+                                 color_discrete_sequence=px.colors.qualitative.Antique   
+                                 )
+  mediaIdadePorCursoJSON = json.dumps(mediaIdadePorCursoBar, cls=plotly.utils.PlotlyJSONEncoder)
+                   
   return render_template("index.html", 
                          tittle="Alunos", 
                          alunosPorCursoPieJSON=alunosPorCursoPieJSON, 
-                         alunosPorCursoBarJSON=alunosPorCursoBarJSON
+                         alunosPorCursoBarJSON=alunosPorCursoBarJSON,
+                         alunosPorTurnoPieJSON=alunosPorTurnoPieJSON, 
+                         alunosPorTurnoBarJSON=alunosPorTurnoBarJSON,
+                         mediaIdadePorCursoJSON=mediaIdadePorCursoJSON
                          )
 
 @app.route("/frequencia_alunos")
@@ -170,14 +201,14 @@ def frequencia_alunos():
   # for i in frequencia_alunos:
   #   print(i)
   #   exit()
-  df_freq = pd.DataFrame(frequencia_alunos, columns=["cpf", "nome", "idade", "sexo", "celular", "curso", "turno", "dia"])
-  df_freq['dia'] = df_freq['dia'].astype(str).str[:10]
-  df_freq['cpf'] = df_freq['cpf'].astype(str)
+  df_frequencia = pd.DataFrame(frequencia_alunos, columns=["cpf", "nome", "idade", "sexo", "celular", "curso", "turno", "dia"])
+  df_frequencia['dia'] = df_frequencia['dia'].astype(str).str[:10]
+  df_frequencia['cpf'] = df_frequencia['cpf'].astype(str)
   # print(df_freq)
-  frequenciaAlunos = df_freq.groupby(['dia'])['cpf'].count().reset_index()
+  df_frequencia_alunos = df_frequencia.groupby(['dia'])['cpf'].count().reset_index()
 
-  alunosPorDia = px.bar(frequenciaAlunos, x='dia', y='cpf', 
-                        title='Quantidade de Alunos por Dia.',
+  alunosPorDia = px.bar(df_frequencia_alunos, x='dia', y='cpf', 
+                        title='Quantidade de Alunos por Dia',
                         labels={'dia': 'Dia','cpf': 'Alunos' },
                         color='cpf',
                         color_discrete_sequence=px.colors.qualitative.Pastel
@@ -185,10 +216,21 @@ def frequencia_alunos():
                         )
   alunosPorDiaJSON = json.dumps(alunosPorDia, cls=plotly.utils.PlotlyJSONEncoder)
 
+  frequenciaPorCurso = df_frequencia['curso'].value_counts()
+  frequenciaPorCursoPie = px.pie(df_frequencia, names=frequenciaPorCurso.index, values=frequenciaPorCurso.values, 
+                        title='Porcentagem de Frequência por Curso',
+                        color_discrete_sequence=px.colors.qualitative.Pastel              
+                        )
+  requenciaPorCursoPieJSON  = json.dumps(frequenciaPorCursoPie, cls=plotly.utils.PlotlyJSONEncoder)
+
+
   return render_template("frequencia_alunos.html", 
                          tittle="Frequência", 
-                         alunosPorDiaJSON=alunosPorDiaJSON
+                         alunosPorDiaJSON=alunosPorDiaJSON,
+                         requenciaPorCursoPieJSON=requenciaPorCursoPieJSON
                          )
+
+
 
 # @app.route("/alunos_cadastrados")
 # @cross_origin()

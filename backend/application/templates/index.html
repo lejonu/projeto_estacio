@@ -55,6 +55,85 @@
       </p>
     </div>
   </div>
+
+  <div
+    class="card ml-auto mr-auto mb-4"
+    style="width: 90%"
+    data-aos="fade-right"
+  >
+    <div class="card-body">
+      <div id="chart3"></div>
+      <p>
+        Vivamus urna sapien, lacinia cursus porta
+        scelerisque, sagittis at elit. Praesent pulvinar
+        risus sit amet ligula varius, quis lobortis leo
+        laoreet. Maecenas consequat hendrerit erat in
+        commodo. Pellentesque gravida, sapien vel gravida
+        lobortis, ante augue feugiat ipsum, consectetur
+        bibendum eros eros sit amet augue. In vehicula purus
+        nec ante molestie, nec posuere eros sagittis.
+        Praesent dignissim lacus libero, eu vehicula massa
+        ultrices ac. Sed id ligula et metus porttitor
+        aliquet. Etiam pulvinar, ex in malesuada commodo,
+        libero elit iaculis neque, eu auctor leo erat nec
+        lectus. Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit. Curabitur posuere ac dui ut
+        posuere.
+      </p>
+    </div>
+  </div>
+  <div
+    class="card ml-auto mr-auto mb-4"
+    style="width: 90%"
+    data-aos="fade-down"
+  >
+    <div class="card-body">
+      <div id="chart4"></div>
+      <p>
+        Vivamus urna sapien, lacinia cursus porta
+        scelerisque, sagittis at elit. Praesent pulvinar
+        risus sit amet ligula varius, quis lobortis leo
+        laoreet. Maecenas consequat hendrerit erat in
+        commodo. Pellentesque gravida, sapien vel gravida
+        lobortis, ante augue feugiat ipsum, consectetur
+        bibendum eros eros sit amet augue. In vehicula purus
+        nec ante molestie, nec posuere eros sagittis.
+        Praesent dignissim lacus libero, eu vehicula massa
+        ultrices ac. Sed id ligula et metus porttitor
+        aliquet. Etiam pulvinar, ex in malesuada commodo,
+        libero elit iaculis neque, eu auctor leo erat nec
+        lectus. Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit. Curabitur posuere ac dui ut
+        posuere.
+      </p>
+    </div>
+  </div>
+  <div
+    class="card ml-auto mr-auto mb-4"
+    style="width: 90%"
+    data-aos="fade-up"
+  >
+    <div class="card-body">
+      <div id="chart5"></div>
+      <p>
+        Vivamus urna sapien, lacinia cursus porta
+        scelerisque, sagittis at elit. Praesent pulvinar
+        risus sit amet ligula varius, quis lobortis leo
+        laoreet. Maecenas consequat hendrerit erat in
+        commodo. Pellentesque gravida, sapien vel gravida
+        lobortis, ante augue feugiat ipsum, consectetur
+        bibendum eros eros sit amet augue. In vehicula purus
+        nec ante molestie, nec posuere eros sagittis.
+        Praesent dignissim lacus libero, eu vehicula massa
+        ultrices ac. Sed id ligula et metus porttitor
+        aliquet. Etiam pulvinar, ex in malesuada commodo,
+        libero elit iaculis neque, eu auctor leo erat nec
+        lectus. Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit. Curabitur posuere ac dui ut
+        posuere.
+      </p>
+    </div>
+  </div>
 </div>
 
 <!-- plotly CDN -->
@@ -66,6 +145,15 @@
   Plotly.plot("chart1", graphs1,{});
   var graphs2 = {{ alunosPorCursoBarJSON | safe}};
   Plotly.plot("chart2", graphs2,{});
+
+
+  var graphs3 = {{ alunosPorTurnoPieJSON | safe}};
+  Plotly.plot("chart3", graphs3,{});
+  var graphs4 = {{ alunosPorTurnoBarJSON | safe}};
+  Plotly.plot("chart4", graphs4,{});
+
+  var graphs5 = {{ mediaIdadePorCursoJSON | safe}};
+  Plotly.plot("chart5", graphs5,{});
 </script>
 
 {% endblock %}

@@ -36,6 +36,36 @@
   </div>
 </div>
 
+<div class="row p-4">
+  <div
+    class="card ml-auto mr-auto mb-4"
+    style="width: 90%"
+    data-aos="fade-up"
+  >
+    <div class="card-body">
+      <div id="chart2"></div>
+      <p>
+        Pellentesque in bibendum quam. Nulla non eros
+        elementum, iaculis lacus quis, tempus orci. Vivamus
+        viverra hendrerit justo ut bibendum. Proin ut turpis
+        rutrum massa venenatis consectetur et nec orci.
+        Aenean ac blandit lorem. Aliquam in viverra sapien,
+        et congue nisl. Lorem ipsum dolor sit amet,
+        consectetur adipiscing elit. Duis vitae suscipit
+        ligula, sagittis tincidunt odio. Donec convallis
+        sapien interdum aliquet bibendum. Nulla in semper
+        sapien. Pellentesque quis tincidunt velit, sit amet
+        imperdiet nunc. Aliquam id ex sit amet arcu accumsan
+        euismod quis eget neque. Integer condimentum
+        consectetur nisl, sit amet imperdiet dui varius sed.
+        Class aptent taciti sociosqu ad litora torquent per
+        conubia nostra, per inceptos himenaeos. Nam ut enim
+        eu justo venenatis auctor in in lectus. Phasellus at
+        diam a lacus laoreet pulvinar luctus at dolor.
+      </p>
+    </div>
+  </div>
+</div>
 <!-- plotly CDN -->
 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -43,6 +73,9 @@
 <script type="text/javascript">
   var graphs1 = {{ alunosPorDiaJSON | safe}};
   Plotly.plot("chart1", graphs1,{});
+
+  var graphs2 = {{ requenciaPorCursoPieJSON | safe}};
+  Plotly.plot("chart2", graphs2,{});
 </script>
 
 {% endblock %}

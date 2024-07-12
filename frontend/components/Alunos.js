@@ -237,13 +237,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
+    marginTop: 20,
     padding: 5
   },
   inputText: {
     marginBottom: 30
   },
   text: {
-    fontSize: 18,
+    fontSize: 12,
     marginBottom: 18,
     textAlign: "center"
   }
