@@ -75,14 +75,14 @@ def registrarFrequencia():
 def getAlunos():
   print("Entrou na route alunos")
   nome_cpf_query = """
-  SELECT nome, cpf FROM aluno;
+  SELECT nome, cpf, celular FROM aluno;
   """
   nome_cpf = db.fetch_data(query=nome_cpf_query)
   payload = []
   content = {}
 
   for result in nome_cpf:
-      content = {'nome': result[0], 'cpf': result[1]}
+      content = {'nome': result[0], 'cpf': result[1], 'celular': result[2]}
       payload.append(content)
       content = {}
 
@@ -110,8 +110,8 @@ def graph01App():
   fig_barra = px.bar(por_dia, x='horario', y='cpf', 
                         title='Quantidade de Alunos por Dia',
                         labels={'horario': 'Dia','cpf': 'Alunos' },
-                        # color='cpf', 
-                        # color_discrete_sequence=px.colors.qualitative.Pastel
+                        color='cpf', 
+                        color_discrete_sequence=px.colors.qualitative.Pastel
                         )
   # fig_barra.show()
 
@@ -141,6 +141,11 @@ def index():
 
   df_alunos_por_curso = df_alunos.groupby(['curso', 'sexo'])['cpf'].count().reset_index()
 
+  df_alunos_por_curso['sexo'] = df_alunos_por_curso['sexo'].map({
+      'M': 'Masculino',
+      'F': 'Feminino'
+  })
+
   alunosPorCursoBar = px.bar(df_alunos_por_curso, x='cpf', y='curso',
                         title='Número de Alunos por Curso e Sexo',
                         labels={'cpf': 'Alunos','curso': 'Curso', 'sexo': 'Sexo:' },
@@ -149,6 +154,11 @@ def index():
                         )
   alunosPorCursoBarJSON = json.dumps(alunosPorCursoBar, cls=plotly.utils.PlotlyJSONEncoder)
 
+  df_alunos['turno'] = df_alunos['turno'].map({
+      'M': 'Manhã',
+      'T': 'Tarde',
+      'N': 'Noite'
+  })
   registros_por_turno = df_alunos['turno'].value_counts()
   # print(registros_por_curso.head())
   alunosPorTurnoPie = px.pie(df_alunos, names=registros_por_turno.index, values=registros_por_turno.values, 
@@ -160,7 +170,10 @@ def index():
   alunosPorTurnoPieJSON = json.dumps(alunosPorTurnoPie, cls=plotly.utils.PlotlyJSONEncoder)
 
   df_alunos_por_turno = df_alunos.groupby(['turno', 'sexo'])['cpf'].count().reset_index()
-
+  df_alunos_por_turno['sexo'] = df_alunos_por_turno['sexo'].map({
+      'M': 'Masculino',
+      'F': 'Feminino'
+  })
   alunosPorTurnoBar = px.bar(df_alunos_por_turno, x='cpf', y='turno',
                         title='Número de Alunos por Turno e Sexo',
                         labels={'cpf': 'Alunos','turno': 'Turno', 'sexo': 'Sexo:' },
@@ -170,7 +183,7 @@ def index():
   alunosPorTurnoBarJSON = json.dumps(alunosPorTurnoBar, cls=plotly.utils.PlotlyJSONEncoder)
   
   df_alunos['idade'] = df_alunos['idade'].astype(int)                           
-  mediaIdadePorCurso = df_alunos.groupby('curso').agg('idade').mean().reset_index()
+  mediaIdadePorCurso = df_alunos.groupby('curso').agg('idade').mean().reset_index().round(2)
   mediaIdadePorCursoBar = px.bar(mediaIdadePorCurso, 
                                  x='curso', 
                                  y='idade',

@@ -36,11 +36,11 @@ const Lgpd = () => {
           alterações na legislação ou nos Serviços, em
           decorrência da utilização de novas ferramentas
           tecnológicas ou, ainda, sempre que, a exclusivo
-          critério dA auto escola, tais alterações se façam
-          necessárias. A utilização dos Serviços online
-          disponibilizados pelo aplicativo por qualquer
-          usuário implicará em expressa aceitação destes
-          Termos e Condições de Uso.
+          critério da auto escola, caso tais alterações se
+          façam necessárias. A utilização dos Serviços
+          online disponibilizados pelo aplicativo por
+          qualquer usuário implicará em expressa aceitação
+          destes Termos e Condições de Uso.
         </Text>
         <Text style={styles.title}>
           Tratamento de Informações
@@ -71,16 +71,31 @@ const Lgpd = () => {
           ilícitos ou abusivos.
         </Text>
         <Text style={styles.title}>
+          Os dados cadastrados neste aplicativo são
+          criptografados.
+        </Text>
+        <Text style={styles.text}>
+          O envio de informações ao banco de só será feito
+          mediante aceitação do usuário ao disponibilizar
+          seu CPF, que poderá, a qualquer momento, requerer
+          o cancelamento do envio de informações; O CPF, o
+          nome e o celular do usuário serão criptografados
+          antes de serem armazenados na base de dados. O
+          aplicativo faz uso de cookies para processar
+          consultas em determinadas bases de dados e
+          realizar operações; Podemos, a qualquer momento e
+          sem aviso prévio aos usuários, alterar ou
+          extinguir qualquer conteúdo desse aplicativo, bem
+          como mudar sua concepção visual e estrutura de
+          conteúdo.
+        </Text>
+
+        <Text style={styles.title}>
           Acesso a Conteúdo Restrito e Suspensão de Acesso
         </Text>
         <Text style={styles.text}>
-          Alguns Serviços estão disponíveis em conteúdo
-          aberto e fechado. A utilização dos Sites podem
-          estar condicionadas à utilização através de acesso
-          por login e senha. Quando o acesso a conteúdo for
-          restrito, será necessário prévio cadastro do
-          usuário e o acesso ao ambiente por meio de login e
-          senha. Considerando que você é responsável pela
+          Os Serviços estão disponíveis em conteúdo fechado.
+          Considerando que você é responsável pela
           veracidade das informações cadastradas, informamos
           que o cadastro de informações falsas pode gerar
           inconsistência na prestação dos serviços, bem como
@@ -88,11 +103,7 @@ const Lgpd = () => {
           tempo, sem aviso prévio, A auto escola poderá
           suspender, cancelar ou interromper o acesso aos
           Serviços, respeitadas as condições da legislação
-          aplicável. O SAAE não se responsabiliza por
-          eventuais danos e/ou problemas decorrentes da
-          demora, interrupção ou bloqueio nas transmissões
-          de dados decorrentes da conexão de internet do
-          usuário.
+          aplicável.
         </Text>
         <Text style={styles.title}>
           Relacionamento com Terceiros
@@ -131,13 +142,13 @@ const Lgpd = () => {
           pessoas físicas. As regras estabelecidas pela LGPD
           devem ser observadas por todos os setores do
           mercado: bancos, hospitais, comércios, empresas de
-          e-commerce e também o setor público.
-          
+          e-commerce e também o setor público. A LGPD pode
+          ser acessada no link:
           http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/L13709compilado.htm
         </Text>
         <Text style={styles.title}>
-          Data de publicação deste documento: 05/07/2024
-          11:43
+          Data de publicação deste documento: 14/07/2024
+          12:12
         </Text>
       </ScrollView>
     </View>

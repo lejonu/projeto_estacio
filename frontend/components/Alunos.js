@@ -17,6 +17,7 @@ import {
 } from "react-native-paper";
 
 import { useCpf } from "../hooks/useCpf";
+import base64 from "react-native-base64";
 
 const Alunos = () => {
   const [cpf, setCpf] = React.useState("");
@@ -72,11 +73,11 @@ const Alunos = () => {
         const response = await Axios.post(
           "novoAluno",
           {
-            cpf,
-            nome,
+            cpf: base64.encode(cpf),
+            nome: base64.encode(nome),
             idade,
             sexo,
-            celular,
+            celular: base64.encode(celular),
             curso,
             turno
           },
@@ -139,12 +140,12 @@ const Alunos = () => {
                   <DataTable.Cell
                     textStyle={{ color: "#484d50" }}
                   >
-                    {item.nome}
+                    {base64.decode(item.nome)}
                   </DataTable.Cell>
                   <DataTable.Cell
                     textStyle={{ color: "#484d50" }}
                   >
-                    {item.cpf}
+                    {base64.decode(item.cpf)}
                   </DataTable.Cell>
                 </DataTable.Row>
               ))}

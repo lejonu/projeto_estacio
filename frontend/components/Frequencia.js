@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { TextInput, Button } from "react-native-paper";
 import { Text, View, StyleSheet } from "react-native";
-import Axios, { formToJSON } from "axios";
+import Axios from "axios";
+import { useCpf } from "../hooks/useCpf";
+import base64 from "react-native-base64";
 
 const Frequencia = () => {
   const [cpf, setCpf] = useState("");
 
   async function sendFrequencia() {
     try {
-      if (cpf !== "") {
+      if (useCpf(cpf)) {
         const response = await Axios.post(
           "registrarFrequencia",
           {
-            cpf: cpf
+            cpf: base64.encode(cpf)
           },
           {
             headers: {
@@ -24,7 +26,7 @@ const Frequencia = () => {
 
       setCpf("");
     } catch (error) {
-      // console.log(error)
+      console.log(error);
     }
   }
 
