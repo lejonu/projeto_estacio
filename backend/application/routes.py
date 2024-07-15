@@ -1,18 +1,15 @@
+from class_implementation.DBClass import DataBase
+from application import app
+
 import pandas as pd
 import plotly
 import plotly.express as px
 import json
-from application import app
-from class_implementation.DBClass import DataBase
-from dotenv import load_dotenv
-import os
 from flask_cors import CORS, cross_origin
 from datetime import datetime
 from flask import request, render_template
 
-load_dotenv()
-
-db = DataBase(os.getenv("host"), os.getenv("user"), os.getenv("password"))
+db = DataBase()
 
 select_db = """
   USE projeto_estacio;

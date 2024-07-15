@@ -1,14 +1,11 @@
 from class_implementation.DBClass import DataBase
-from dotenv import load_dotenv
-import os
 from datetime import datetime
 
 # ts = datetime.now()
 ts_temp = datetime(2024, 7, 13, 8)
 ts = ts_temp.strftime('%Y-%m-%d %H:%M:%S')
 
-load_dotenv()
-db = DataBase(os.getenv("host"), os.getenv("user"), os.getenv("password"))
+db = DataBase()
 
 select_db = """
   USE projeto_estacio;

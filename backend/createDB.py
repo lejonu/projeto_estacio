@@ -1,13 +1,8 @@
 from class_implementation.DBClass import DataBase
-from dotenv import load_dotenv
-import os
 
-load_dotenv()
-
-db = DataBase(os.getenv("host"), os.getenv("user"), os.getenv("password"))
+db = DataBase()
 
 db.create_db(database="projeto_estacio")
-
 
 select_db = """
   USE projeto_estacio;

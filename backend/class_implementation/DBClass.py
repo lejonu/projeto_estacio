@@ -1,11 +1,22 @@
+from typing import Any
 from mysql import connector
+# from dotenv import load_dotenv
+import os
+class DataBaseMeta(type):
+  _instances = {}
 
-class DataBase:
-  def __init__(self, url, user, password) -> None:
-    self.url = url 
-    self.user = user
+  def __call__(cls, *args: Any, **kwds: Any) -> Any:
+    if cls not in cls._instances:
+      instance = super().__call__(*args, **kwds)
+      cls._instances[cls] = instance
+    return cls._instances[cls]
+
+class DataBase(metaclass=DataBaseMeta):
+  def __init__(self) -> None:
+    self.url = os.getenv("host") 
+    self.user = os.getenv("user")
     # connect
-    self.connection = self.connect_to_db(password)
+    self.connection = self.connect_to_db(os.getenv("password"))
     
   def connect_to_db(self, password):
     conn = None
