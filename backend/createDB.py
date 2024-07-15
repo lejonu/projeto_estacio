@@ -1,17 +1,11 @@
 from class_implementation.DBClass import DataBase
 
 db = DataBase()
-
-db.create_db(database="projeto_estacio")
-
-select_db = """
-  USE projeto_estacio;
-"""
-
-db.execute_query("select_db", query=select_db)
+db.create_db()
+db.select_db()
 
 create_table_aluno = """
-CREATE TABLE IF NOT EXISTS `projeto_estacio`.`aluno` (
+CREATE TABLE IF NOT EXISTS `aluno` (
   `cpf` VARCHAR(45) NOT NULL,
   `nome` VARCHAR(200) NULL,
   `idade` INT(3) NULL,
@@ -24,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `projeto_estacio`.`aluno` (
 db.execute_query("create_table_aluno", query=create_table_aluno)
 
 create_table_frequencia = """
-CREATE TABLE IF NOT EXISTS `projeto_estacio`.`frequencia` (
+CREATE TABLE IF NOT EXISTS `frequencia` (
   `id_frequencia` INT NOT NULL AUTO_INCREMENT,
   `horario` DATETIME NULL,
   `cpf` VARCHAR(45) NOT NULL,

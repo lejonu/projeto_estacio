@@ -1,18 +1,18 @@
 from class_implementation.DBClass import DataBase
 
 db = DataBase()
-db.create_db(database="proj_extensao")
+db.select_db()
+# db.create_db(database="proj_extensao")
 
-select_db = """
-  USE projeto_estacio;
-"""
+# select_db = """
+#   USE projeto_estacio;
+# """
 
-db.execute_query("select_db", query=select_db)
+# db.execute_query("select_db", query=select_db)
 
 insert_aluno = """
 INSERT INTO `aluno` (`cpf`,`nome`,`idade`,`sexo`,`celular`,`curso`,`turno`) 
 VALUES 
-('MjIyMTA2Mjc2MDU=','Q2F0YXJpbmEgU29waGllIEdhYnJpZWxseQ==',32,'F','MzE5ODUzMzYzMzk=','DICAS E MACETES','N'),
 ('MTc2MTgyNjk2NDU=','Q2FtaWxhIE5pY29sZSBDbGFyYSBBcGFy7WNpbw==',26,'F','MzE5ODQ2ODc5MzE=','DIREÇÃO DEFENSIVA','T'),
 ('MTQ1NTg5Mzc2NTI=','U/RuaWEgQWxpY2UgR2FicmllbGx5IENhbXBvcw==',25,'F','MzE5OTI3NjAxOTc=','EQUIPAMENTOS OBRIGATÓRIOS','T'),
 ('MzExNzg5NjU2Mjc=','WWFzbWluIElzYWJlbGxhIFRlcmV6YSBQaW50bw==',23,'F','MzE5ODkwMDgyNTU=','MEIO AMBIENTE','M'),

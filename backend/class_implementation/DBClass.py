@@ -1,7 +1,9 @@
 from typing import Any
 from mysql import connector
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 import os
+
+load_dotenv()
 class DataBaseMeta(type):
   _instances = {}
 
@@ -12,12 +14,15 @@ class DataBaseMeta(type):
     return cls._instances[cls]
 
 class DataBase(metaclass=DataBaseMeta):
+  database_name = os.getenv("database")
   def __init__(self) -> None:
     self.url = os.getenv("host") 
     self.user = os.getenv("user")
+    self.database = os.getenv("database")
+
     # connect
     self.connection = self.connect_to_db(os.getenv("password"))
-    
+
   def connect_to_db(self, password):
     conn = None
 
@@ -25,7 +30,7 @@ class DataBase(metaclass=DataBaseMeta):
       conn = connector.connect(
         host = self.url,
         user = self.user,
-        passwd = password 
+        passwd = password
       )
 
       print(f"Connection to MySQL was successfull")
@@ -34,16 +39,31 @@ class DataBase(metaclass=DataBaseMeta):
 
     return conn
   
-  def create_db(self, database):
+  def create_db(self):
     cursor = self.connection.cursor()
 
     query = f"""
-      CREATE DATABASE IF NOT EXISTS {database};
+      CREATE DATABASE IF NOT EXISTS {self.database};
     """
       
     try:
       cursor.execute(query)
-      print(f"Database {database} created sucessfully")
+
+      print(f"Database {self.database} created sucessfully")
+    except connector.Error as err:
+      print(f"Error Creating DB: {err}")  
+
+  def select_db(self):
+    cursor = self.connection.cursor()
+    
+    select = f"""
+      USE {self.database};
+    """
+      
+    try:
+      cursor.execute(select)
+      self.connection.commit()
+      print(f"Database {self.database} selected sucessfully")
     except connector.Error as err:
       print(f"Error Creating DB: {err}")
 
