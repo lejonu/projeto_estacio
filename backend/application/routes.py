@@ -10,11 +10,7 @@ from datetime import datetime
 from flask import request, render_template
 
 db = DataBase()
-
-select_db = """
-  USE projeto_estacio;
-"""
-db.execute_query("select_db", query=select_db)
+db.select_db()
 
 # Routes para o aplicativo
 @app.route("/novoAluno", methods=['GET', 'POST'])
@@ -86,8 +82,7 @@ def getAlunos():
   response = app.response_class(
       response=json.dumps(payload),
       status=200,
-      mimetype='application/json'
-      
+      mimetype='application/json'   
   )
   return response
 
