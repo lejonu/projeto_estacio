@@ -180,6 +180,7 @@ const Alunos = () => {
               label="CPF"
               value={cpf}
               onChangeText={cpf => setCpf(cpf)}
+              keyboardType="numeric"
             />
             <TextInput
               style={styles.inputText}

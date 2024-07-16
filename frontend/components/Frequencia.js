@@ -40,6 +40,7 @@ const Frequencia = () => {
         label="CPF"
         value={cpf}
         onChangeText={cpf => setCpf(cpf)}
+        keyboardType="numeric"
       />
       <Button
         style={styles.button}
