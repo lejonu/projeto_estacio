@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Plot from "react-native-plotly";
-import { Text, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import Axios from "axios";
 import {
   ActivityIndicator,
@@ -8,8 +8,6 @@ import {
 } from "react-native-paper";
 
 const Graph = () => {
-  d = new Date();
-  let time = d.getTime();
   const [plot, setPlot] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -25,12 +23,12 @@ const Graph = () => {
         setPlot(await response.data);
         setIsLoading(false);
       } catch (error) {
-        // console.log(error)
+        console.log(error);
       }
     }
 
     fetchGraph();
-  }, [time]);
+  }, []);
 
   if (isLoading)
     return (

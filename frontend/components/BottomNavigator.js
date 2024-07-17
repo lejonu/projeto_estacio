@@ -7,14 +7,13 @@ import Lgpd from "./Lgpd";
 import Frequencia from "./Frequencia";
 
 const AlunosRoute = () => <Alunos />;
-// const AlunosRoute = () => <Text>Recents</Text>;
-
 const GraphRoute = () => <Graph />;
 const Frequency = () => <Frequencia />;
 const RecentsRoute = () => <Lgpd />;
 
 const BottomNavigator = () => {
   const [index, setIndex] = React.useState(0);
+
   const [routes] = React.useState([
     {
       key: "frequencia",
@@ -29,7 +28,7 @@ const BottomNavigator = () => {
       unfocusedIcon: "account-circle-outline"
     },
     {
-      key: "Graphs",
+      key: "graph",
       title: "Graph",
       focusedIcon: "finance"
     },
@@ -43,7 +42,7 @@ const BottomNavigator = () => {
 
   const renderScene = BottomNavigation.SceneMap({
     alunos: AlunosRoute,
-    Graphs: GraphRoute,
+    graph: GraphRoute,
     recents: RecentsRoute,
     frequencia: Frequency
   });
@@ -53,6 +52,7 @@ const BottomNavigator = () => {
       navigationState={{ index, routes }}
       onIndexChange={setIndex}
       renderScene={renderScene}
+      shifting={true}
     />
   );
 };

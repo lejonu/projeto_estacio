@@ -82,20 +82,26 @@ const Alunos = () => {
           cancelToken: ourRequest.token
         });
 
-        const decoded = response.data.map(item => {
-          return {
-            nome: base64.decode(item.nome),
-            cpf: base64.decode(item.cpf),
-            celular: base64.decode(item.celular)
-          };
-        });
-        decoded.sort((a, b) => (a.nome > b.nome ? 1 : -1));
+        let decoded = {};
 
-        console.log(decoded);
+        if (response.data.length > 0) {
+          decoded = response.data.map(item => {
+            return {
+              nome: base64.decode(item.nome),
+              cpf: base64.decode(item.cpf),
+              celular: base64.decode(item.celular)
+            };
+          });
+
+          decoded.sort((a, b) =>
+            a.nome > b.nome ? 1 : -1
+          );
+        }
+
         setItems(decoded);
         setIsLoading(false);
       } catch (error) {
-        // console.log(error)
+        console.log(error);
       }
     }
 
@@ -145,7 +151,7 @@ const Alunos = () => {
       setTurno("");
       setReloadAlunos(reloadAlunos => reloadAlunos + 1);
     } catch (error) {
-      // console.log(error)
+      console.log(error);
     }
   }
 

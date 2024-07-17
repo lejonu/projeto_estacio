@@ -1,6 +1,9 @@
 import React from "react";
 import base64 from "react-native-base64";
 import Axios from "axios";
+Axios.defaults.baseURL = "http://192.168.1.10:5000/";
+//
+//
 
 export const useFrequencia = cpf => {
   async function insertFrequencia() {
@@ -18,7 +21,7 @@ export const useFrequencia = cpf => {
       );
     } catch (error) {
       console.log(error);
-      return false;
+      // return false;
     }
   }
   insertFrequencia();

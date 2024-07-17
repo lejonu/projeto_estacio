@@ -4,17 +4,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-class DataBaseMeta(type):
-  _instances = {}
-
-  def __call__(cls, *args: Any, **kwds: Any) -> Any:
-    if cls not in cls._instances:
-      instance = super().__call__(*args, **kwds)
-      cls._instances[cls] = instance
-    return cls._instances[cls]
-
-class DataBase(metaclass=DataBaseMeta):
-  database_name = os.getenv("database")
+class DataBase():
   def __init__(self) -> None:
     self.url = os.getenv("host") 
     self.user = os.getenv("user")
