@@ -1,37 +1,47 @@
 import React, { useState } from "react";
 import { TextInput, Button } from "react-native-paper";
 import { Text, View, StyleSheet } from "react-native";
-import Axios from "axios";
+import { useFrequencia } from "../hooks/useFrequencia";
 import { useCpf } from "../hooks/useCpf";
-import base64 from "react-native-base64";
+import { Banner } from "react-native-paper";
 
 const Frequencia = () => {
   const [cpf, setCpf] = useState("");
-
-  async function sendFrequencia() {
-    try {
-      if (useCpf(cpf)) {
-        const response = await Axios.post(
-          "registrarFrequencia",
-          {
-            cpf: base64.encode(cpf)
-          },
-          {
-            headers: {
-              "Content-Type": "application/json"
-            }
-          }
+  const [visible, setVisible] = React.useState(false);
+  const [bannerMessage, setBannerMessage] = useState("");
+  const [bannerIcon, setBannerIcon] = useState("");
+  const insertFrequencia = () => {
+    if (useCpf(cpf)) {
+      if (useFrequencia(cpf)) {
+        setCpf("");
+        setBannerIcon("playlist-check");
+        setBannerMessage(
+          "Frequência inserida com sucesso!"
         );
+        setVisible(true);
+        setInterval(() => {
+          setVisible(false);
+        }, 3000);
       }
-
-      setCpf("");
-    } catch (error) {
-      console.log(error);
+    } else {
+      setBannerIcon("playlist-remove");
+      setBannerMessage(
+        "Houve um problema na inserção. Tente novamente"
+      );
+      setVisible(true);
+      console.log("Error");
     }
-  }
+  };
 
   return (
     <View style={styles.container}>
+      <Banner
+        visible={visible}
+        icon={bannerIcon}
+        style={styles.banner}
+      >
+        {bannerMessage}
+      </Banner>
       <Text style={styles.text}>
         Insira o CPF para registrar a frequência
       </Text>
@@ -46,7 +56,7 @@ const Frequencia = () => {
         style={styles.button}
         icon="account-clock"
         mode="contained"
-        onPress={sendFrequencia}
+        onPress={insertFrequencia}
       >
         Registrar Frequência
       </Button>
@@ -67,6 +77,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 18,
     textAlign: "center"
+  },
+  banner: {
+    marginBottom: 30
   }
 });
 export default Frequencia;
