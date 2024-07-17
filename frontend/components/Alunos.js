@@ -18,8 +18,14 @@ import {
 
 import { useCpf } from "../hooks/useCpf";
 import base64 from "react-native-base64";
+import { useFrequencia } from "../hooks/useFrequencia";
+import { Banner } from "react-native-paper";
 
 const Alunos = () => {
+  const [bannerMessage, setBannerMessage] = useState("");
+  const [bannerIcon, setBannerIcon] = useState("");
+  const [visible, setVisible] = React.useState(false);
+
   const [cpf, setCpf] = React.useState("");
   const [nome, setNome] = React.useState("");
   const [idade, setIdade] = React.useState("");
@@ -37,6 +43,35 @@ const Alunos = () => {
   ]);
   const [itemsPerPage, onItemsPerPageChange] =
     React.useState(numberOfItemsPerPageList[3]);
+
+  useEffect(() => {
+    function intervalId() {
+      setInterval(() => {
+        setVisible(false);
+      }, 3000);
+    }
+    intervalId();
+    clearInterval(intervalId);
+  }, [bannerMessage]);
+
+  const insertFrequencia = (cpfInsert, cpfNome) => {
+    if (useCpf(cpfInsert)) {
+      if (useFrequencia(cpfInsert)) {
+        setBannerIcon("playlist-check");
+        setBannerMessage(
+          `Frequência ${cpfNome} inserida com sucesso!`
+        );
+        setVisible(true);
+      }
+    } else {
+      setBannerIcon("playlist-remove");
+      setBannerMessage(
+        "Houve um problema na inserção. Tente novamente"
+      );
+      setVisible(true);
+      console.log("Error");
+    }
+  };
 
   useEffect(() => {
     const ourRequest = Axios.CancelToken.source();
@@ -117,6 +152,13 @@ const Alunos = () => {
     <PaperProvider>
       <ScrollView>
         <View style={styles.container}>
+          <Banner
+            visible={visible}
+            icon={bannerIcon}
+            style={styles.banner}
+          >
+            {bannerMessage}
+          </Banner>
           <View>
             <Text style={styles.text}>
               Alunos Cadastrados
@@ -145,7 +187,17 @@ const Alunos = () => {
                   <DataTable.Cell
                     textStyle={{ color: "#484d50" }}
                   >
-                    {base64.decode(item.cpf)}
+                    <Button
+                      mode="contained"
+                      onPress={() =>
+                        insertFrequencia(
+                          base64.decode(item.cpf),
+                          base64.decode(item.nome)
+                        )
+                      }
+                    >
+                      {base64.decode(item.cpf)}
+                    </Button>
                   </DataTable.Cell>
                 </DataTable.Row>
               ))}
