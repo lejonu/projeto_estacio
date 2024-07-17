@@ -82,7 +82,17 @@ const Alunos = () => {
           cancelToken: ourRequest.token
         });
 
-        setItems(await response.data);
+        const decoded = response.data.map(item => {
+          return {
+            nome: base64.decode(item.nome),
+            cpf: base64.decode(item.cpf),
+            celular: base64.decode(item.celular)
+          };
+        });
+        decoded.sort((a, b) => (a.nome > b.nome ? 1 : -1));
+
+        console.log(decoded);
+        setItems(decoded);
         setIsLoading(false);
       } catch (error) {
         // console.log(error)
@@ -182,7 +192,7 @@ const Alunos = () => {
                   <DataTable.Cell
                     textStyle={{ color: "#484d50" }}
                   >
-                    {base64.decode(item.nome)}
+                    {item.nome}
                   </DataTable.Cell>
                   <DataTable.Cell
                     textStyle={{ color: "#484d50" }}
@@ -191,12 +201,12 @@ const Alunos = () => {
                       mode="contained"
                       onPress={() =>
                         insertFrequencia(
-                          base64.decode(item.cpf),
-                          base64.decode(item.nome)
+                          item.cpf,
+                          item.nome
                         )
                       }
                     >
-                      {base64.decode(item.cpf)}
+                      {item.cpf}
                     </Button>
                   </DataTable.Cell>
                 </DataTable.Row>
