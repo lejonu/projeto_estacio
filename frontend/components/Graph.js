@@ -8,6 +8,8 @@ import {
 } from "react-native-paper";
 
 const Graph = () => {
+  d = new Date();
+  let time = d.getTime();
   const [plot, setPlot] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -28,7 +30,7 @@ const Graph = () => {
     }
 
     fetchGraph();
-  }, []);
+  }, [time]);
 
   if (isLoading)
     return (
