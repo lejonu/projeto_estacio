@@ -36,8 +36,8 @@ const Lgpd = () => {
           alterações na legislação ou nos Serviços, em
           decorrência da utilização de novas ferramentas
           tecnológicas ou, ainda, sempre que, a exclusivo
-          critério da auto escola, caso tais alterações se
-          façam necessárias. A utilização dos Serviços
+          critério da autoescola, caso tais alterações se
+          façam necessárias. A utilização dos serviços
           online disponibilizados pelo aplicativo por
           qualquer usuário implicará em expressa aceitação
           destes Termos e Condições de Uso.
@@ -48,46 +48,46 @@ const Lgpd = () => {
         <Text style={styles.text}>
           A sua privacidade e o sigilo de suas informações
           são muito importantes. Tomamos os cuidados
-          necessários para garantir a proteção de seus dados
-          pessoais, o sigilo e o uso adequado dos seus dados
-          pessoais. A auto escola se compromete a cumprir as
-          normas previstas na LGPD e a realizar o tratamento
-          de dados pessoais em conformidade com os seguintes
-          princípios: a) apenas para as finalidades
-          determinadas nessa política, valendo-se da
-          quantidade adequada de dados, pertinentes e
-          limitados à necessidade e objetivo do tratamento;
-          b) de forma transparente, sendo garantido ao
-          titular dos dados o livre acesso, a exatidão dos
-          dados e a sua consulta facilitada; c) de forma
-          segura, por meio da adoção de medidas técnicas
-          aptas a proteger os dados pessoais, prevenir e
-          mitigar danos decorrentes de eventual acesso não
-          autorizado, ou de situação acidental ou ilícita de
-          violação de dados. A auto escola realizará a
-          gestão de dados pessoais durante o ciclo de vida
-          destas informações; e em hipótese alguma haverá
-          tratamento de dados para fins discriminatórios
-          ilícitos ou abusivos.
+          necessários para garantir a proteção, o sigilo e o
+          uso adequado dos seus dados pessoais. A autoescola
+          se compromete a cumprir as normas previstas na
+          LGPD (Lei Geral de Proteção de Dadas Pessoais) e a
+          realizar o tratamento de dados pessoais em
+          conformidade com os seguintes princípios: a)
+          apenas para as finalidades determinadas nessa
+          política, valendo-se da quantidade adequada de
+          dados, pertinentes e limitados à necessidade e
+          objetivo do tratamento; b) de forma transparente,
+          sendo garantido ao titular dos dados o livre
+          acesso, a exatidão dos dados e a sua consulta
+          facilitada; c) de forma segura, por meio da adoção
+          de medidas técnicas aptas a proteger os dados
+          pessoais, prevenir e mitigar danos decorrentes de
+          eventual acesso não autorizado, ou de situação
+          acidental ou ilícita de violação de dados. A
+          autoescola realizará a gestão de dados pessoais
+          durante o ciclo de vida destas informações; e em
+          hipótese alguma haverá tratamento de dados para
+          fins discriminatórios ilícitos ou abusivos.
         </Text>
         <Text style={styles.title}>
           Os dados cadastrados neste aplicativo são
           criptografados.
         </Text>
         <Text style={styles.text}>
-          O envio de informações ao banco de só será feito
-          mediante aceitação do usuário ao disponibilizar
-          seu CPF, que poderá, a qualquer momento, requerer
-          o cancelamento do envio de informações; O CPF, o
-          nome e o celular do usuário serão criptografados
-          antes de serem armazenados na base de dados. O
-          aplicativo faz uso de cookies para processar
-          consultas em determinadas bases de dados e
-          realizar operações; Podemos, a qualquer momento e
-          sem aviso prévio aos usuários, alterar ou
-          extinguir qualquer conteúdo desse aplicativo, bem
-          como mudar sua concepção visual e estrutura de
-          conteúdo.
+          O envio de informações ao banco de dados só será
+          feito mediante aceitação do usuário ao
+          disponibilizar seu CPF, que poderá, a qualquer
+          momento, requerer o cancelamento do envio de
+          informações; O CPF, o nome e número do celular do
+          usuário serão criptografados antes de serem
+          armazenados na base de dados. O aplicativo faz uso
+          de cookies para processar consultas em
+          determinadas bases de dados e realizar operações;
+          Podemos, a qualquer momento e sem aviso prévio aos
+          usuários, alterar ou extinguir qualquer conteúdo
+          desse aplicativo, bem como mudar sua concepção
+          visual e estrutura de conteúdo.
         </Text>
 
         <Text style={styles.title}>
@@ -100,7 +100,7 @@ const Lgpd = () => {
           que o cadastro de informações falsas pode gerar
           inconsistência na prestação dos serviços, bem como
           impactar ou interromper o seu acesso. A qualquer
-          tempo, sem aviso prévio, A auto escola poderá
+          tempo, sem aviso prévio, A autoescola poderá
           suspender, cancelar ou interromper o acesso aos
           Serviços, respeitadas as condições da legislação
           aplicável.
@@ -109,7 +109,7 @@ const Lgpd = () => {
           Relacionamento com Terceiros
         </Text>
         <Text style={styles.text}>
-          Esse aplicativo contém links que levam a sites de
+          Este aplicativo contém links que levam a sites de
           terceiros, cujos conteúdos não são de nossa
           responsabilidade e sobre os quais não incide essa
           política de privacidade.
@@ -121,16 +121,17 @@ const Lgpd = () => {
           Os conteúdos publicados na área de notícias do
           aplicativo, nos formatos de textos, fotos, vídeos
           ou áudios, têm caráter institucional ou avisos aos
-          usuários; Disponibiliza esses conteúdos como de
-          uso público, permitindo sua reprodução em parte ou
-          na íntegra, porém é vedada a reprodução dos mesmos
-          de forma alterada, que prejudiquem ou mudem a sua
-          interpretação com objetivos inversos à informação
-          original. Fica vedada, também, a reprodução dos
-          mesmos para fins comerciais.
+          usuários; A autoescola disponibiliza esses
+          conteúdos como de uso público, permitindo sua
+          reprodução em parte ou na íntegra, porém é vedada
+          a reprodução dos mesmos de forma alterada, que
+          prejudiquem ou mudem a sua interpretação com
+          objetivos inversos à informação original. Fica
+          vedada, também, a reprodução dos mesmos para fins
+          comerciais.
         </Text>
         <Text style={styles.title}>
-          O que é a Lei Geral de Proteção de Dados?
+          O que é a Lei Geral de Proteção de Dados Pessoais?
         </Text>
         <Text style={styles.text}>
           É uma lei que estabelece regras ao uso de dados
@@ -142,8 +143,10 @@ const Lgpd = () => {
           pessoas físicas. As regras estabelecidas pela LGPD
           devem ser observadas por todos os setores do
           mercado: bancos, hospitais, comércios, empresas de
-          e-commerce e também o setor público. A LGPD pode
-          ser acessada no link:
+          e-commerce e também o setor público.
+        </Text>
+        <Text style={styles.text}>
+          A LGPD pode ser acessada no link:
           http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/L13709compilado.htm
         </Text>
         <Text style={styles.title}>
