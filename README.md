@@ -28,7 +28,7 @@ Tópicos de Big Data em Python – Prof. Robson Lorbieski
 
 ##### Modelo entidade relacionamento:
 
-![modelo-aluno-frequencia](/mnt/c83dfcff-d789-4200-9e21-37c6d416dad4/leonardo/Downloads/Estácio/Extensão/Projeto_Estacio/projeto_estacio/Img/modelo-aluno-frequencia.png)
+![modelo-aluno-frequencia](./Img/modelo-aluno-frequencia.png)
 
 
 
