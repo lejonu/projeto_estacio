@@ -35,4 +35,6 @@ frontend/.env*.local
 # typescript
 frontend/*.tsbuildinfo
 
- backend/class_implementation/__pycache__/
+backend/class_implementation/__pycache__/
+frontend/__snapshots__/
+frontend/package-lock.json
