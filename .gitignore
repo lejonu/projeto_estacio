@@ -38,3 +38,4 @@ frontend/*.tsbuildinfo
 backend/class_implementation/__pycache__/
 frontend/__snapshots__/
 frontend/package-lock.json
+frontend/components/__snapshots__/
