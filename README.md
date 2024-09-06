@@ -32,4 +32,22 @@ Tópicos de Big Data em Python – Prof. Robson Lorbieski
 
 
 
+### Gráfico de Alunos Cadastrados - Browser:
+
+<img src="./Img/09-Alunos_Cadastrados.png" alt="09-Alunos_Cadastrados" style="zoom: 67%;" />
+
+
+
+### Insere Frequência via Aplicativo React Native
+
+<img src="./Img/15-InserirFrequencia_Expo_Go.jpg" alt="15-InserirFrequencia_Expo_Go" style="zoom:50%;" />
+
+
+
+### Gráfico Frequência de Alunos - Aplicativo React Native
+
+<img src="./Img/18-Aplicativo_Expo_Go.jpg" alt="18-Aplicativo_Expo_Go" style="zoom:50%;" />
+
+
+
 [License](./LICENSE.md)
